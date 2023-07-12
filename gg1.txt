@@ -13,7 +13,7 @@ function SignInUpForm() {
   const handleSignInClick = () => {
     setIsSignUpActive(false);
   };
-//-------------------------------------------------------------------------------------
+
   const handleLogin = async (e) => {
     e.preventDefault();
     // Retrieve the form input values
@@ -49,7 +49,7 @@ function SignInUpForm() {
       alert('Please fill in all the required fields');
     }
   };
-  //------------------------------------------------------------------------------------
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
   
@@ -87,67 +87,7 @@ function SignInUpForm() {
       alert('Please fill in all the required fields');
     }
   };
-
-  // ---------------------------- Facebook--------------------------------
-  useState(() => {
-    // Load the Facebook SDK asynchronously
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
-
-    // Initialize the Facebook SDK
-    window.fbAsyncInit = function () {
-      window.FB.init({
-        appId: '1393634898159776', // Replace with your actual App ID
-        cookie: true, // Enable cookies to allow the server to access the session
-        xfbml: true, // Parse social plugins on this page
-        version: 'v15.0', // Specify the version of the Facebook Graph API
-      });
-    };
-  }, []);
-  const handleFacebookLogin = () => {
-    window.FB.login(
-      (response) => {
-        if (response.status === 'connected') {
-          // User is logged in with Facebook and authorized your app
-          const accessToken = response.authResponse.accessToken;
-          // You can now make API requests using the accessToken
-
-          // Example: Redirect to the welcome page
-          navigate('/welcome');
-        } else {
-          // User cancelled the Facebook login or didn't authorize your app
-          alert('Facebook login was not successful. Please try again.');
-        }
-      },
-      { scope: 'email' } // Specify the required permissions
-    );
-  };
-  const handleFacebookSignUp = () => {
-    window.FB.login(
-      (response) => {
-        if (response.status === 'connected') {
-          // User is logged in with Facebook and authorized your app
-          const accessToken = response.authResponse.accessToken;
-          // You can now make API requests using the accessToken
   
-          // Example: Redirect to the welcome page
-          navigate('/welcome');
-        } else {
-          // User cancelled the Facebook login or didn't authorize your app
-          alert('Facebook sign-up was not successful. Please try again.');
-        }
-      },
-      { scope: 'email' } // Specify the required permissions
-    );
-  };
-  //-----------------------------------------------------------------------------------------------
   return (
     <div className={`container ${isSignUpActive ? 'right-panel-active' : ''}`}>
       <div className="form-container sign-up-container">
@@ -163,7 +103,7 @@ function SignInUpForm() {
           <br></br>
           <span>or use social media for registration</span>
           <div className="social-container">
-            <a href="#" onClick={handleFacebookSignUp} className="social" style={{ backgroundColor: '#3b5998 ' }}><i className="fab fa-facebook-f" style={{ color: 'white' }}></i></a>
+            <a href="#" className="social" style={{ backgroundColor: '#3b5998 ' }}><i className="fab fa-facebook-f" style={{ color: 'white' }}></i></a>
             <a href="#" className="social" style={{ backgroundColor: '#db4a39' }}><i className="fab fa-google-plus-g" style={{ color: 'white' }}></i></a>
             <a href="#" className="social"style={{ backgroundColor: '#00acee' }}><i className="fab fa-twitter" style={{ color: 'white' }}></i></a>
           </div>
@@ -179,7 +119,7 @@ function SignInUpForm() {
           <br></br>
           <span>or use social media for login</span>
           <div className="social-container">
-            <a href="#" onClick={handleFacebookLogin} className="social" style={{ backgroundColor: '#3b5998 ' }}><i className="fab fa-facebook-f" style={{ color: 'white' }}></i></a>
+            <a href="#" className="social" style={{ backgroundColor: '#3b5998 ' }}><i className="fab fa-facebook-f" style={{ color: 'white' }}></i></a>
             <a href="#" className="social" style={{ backgroundColor: '#db4a39' }}><i className="fab fa-google-plus-g" style={{ color: 'white' }}></i></a>
             <a href="#" className="social"style={{ backgroundColor: '#00acee' }}><i className="fab fa-twitter" style={{ color: 'white' }}></i></a>
           </div>
